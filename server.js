@@ -9,6 +9,7 @@ var express = require('express'),
     config = require('config.json'),
     http = require('http'),
     mongoose = require('mongoose'),
+    ctrlr = require('./index.controller.js')
     io = require('socket.io')(http);
 
 app.set('view engine', 'ejs');
@@ -31,10 +32,8 @@ app.get('/', function (req, res) {
     return res.redirect('/app');
 });
 
-io.on('connection', function (socket) {
-    socket.on('chat message', function (msg) {
-        io.emit('chat message', msg);
-    });
+var chat = io.on('connection', function (socket) {
+        ctrlr.respond(chat, socket);
 });
 
 /*io.on('connection', function (socket) {
