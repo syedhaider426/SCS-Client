@@ -20,9 +20,10 @@
                 cd.user = user;
             });
         }
-    }
+    });
     module.exports.respond = function (socket_io) {
         socket_io.on('chat message', function (msg) {
             io.emit('chat message', msg);
-    });
+        });
+    };
 });
