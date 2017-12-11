@@ -32,11 +32,10 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    console.log('User Connected.');
     socket.on('chat message', function (msg) {
         io.emit('chat message', msg);
     });
-)};
+});
 
 /*io.on('connection', function (socket) {
     console.log('User Connected.');
