@@ -10,7 +10,7 @@ var express = require('express'),
     http = require('http'),
     //mongoose = require('mongoose'),
     io = require('socket.io')(http);
-var controller = require('/app/home/index.controller.js');
+var controller = require('./index.js');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
