@@ -19,19 +19,12 @@
 
         //two states are default 'home' state and 'account' state
         $stateProvider
-            .state('home', { 
+            .state('home', {
                 url: '/',
                 templateUrl: 'home/index.html',
                 controller: 'Home.IndexController',
                 controllerAs: 'cd',
                 data: { activeTab: 'home' }
-            })
-            .state('account', {
-                url: '/account',
-                templateUrl: 'account/index.html',
-                controller: 'Account.IndexController',
-                controllerAs: 'cd',
-                data: { activeTab: 'account' }
             });
     }
 
