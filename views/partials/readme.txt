@@ -1,0 +1,1 @@
+The express partial views folder contains all partial views for the nodejs application such as the header and footer. The EJS view engine doesn't support layouts which is why I went with partials instead for the header and footer.
