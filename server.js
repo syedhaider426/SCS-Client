@@ -1,14 +1,19 @@
 require('rootpath')();
-var express = require('express');
-var app = express();
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var expressJwt = require('express-jwt');
-var config = require('config.json');
+var express = require('express'),
+    app = express(),
+    messenger = express(),
+    Usersession = require('express-session'),
+    bodyParser = require('body-parser'),
+    expressJwt = require('express-jwt'),
+    socketJwt = require('socketio-jwt'),
+    config = require('config.json'),
+    http = require('http'),
+    mongoose = require('mongoose'),
+    io = require('socket.io')(http);
  
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: true }));
  
@@ -25,8 +30,25 @@ app.use('/api/users', require('./controllers/api/users.controller'));
 app.get('/', function (req, res) {
     return res.redirect('/app');
 });
- 
+
+io.on('connection', function (socket) {
+    console.log('User Connected.');
+    socket.on('chat message', function (msg) {
+        io.emit('chat message', msg);
+    });
+)};
+
+/*io.on('connection', function (socket) {
+    console.log('User Connected.');
+    socket.on('chat message', function (msg) {
+        io.emit('chat message', msg);
+    });
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
+    });
+});*/
+
 // start server
-var server = app.listen(3000, function () {
+server.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + server.address().port);
 });
