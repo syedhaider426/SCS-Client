@@ -28,5 +28,16 @@ app.get('/', function (req, res) {
  
 // start server
 var server = app.listen(3000, function () {
-    console.log('Server listening at http://' + server.address().address + server.address().port);
+    console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
 });
+/*
+mongoose.Promise = global.Promise;
+  mongoose.connect('mongodb://127.0.0.1:27017', { useMongoClient: true });
+
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+
+  var routes = require('./api/routes/routes');
+  routes(app);*/
+
+
