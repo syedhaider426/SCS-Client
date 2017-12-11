@@ -2,13 +2,13 @@ require('rootpath')();
 var express = require('express'),
     app = express(),
     messenger = express(),
-    Usersession = require('express-session'),
+    session = require('express-session'),
     bodyParser = require('body-parser'),
     expressJwt = require('express-jwt'),
-    socketJwt = require('socketio-jwt'),
+//  socketJwt = require('socketio-jwt'),
     config = require('config.json'),
     http = require('http'),
-    mongoose = require('mongoose'),
+//  mongoose = require('mongoose'),
     io = require('socket.io')(http);
 
 app.set('view engine', 'ejs');
@@ -36,7 +36,7 @@ io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
         io.emit('chat message', msg);
     });
-)};
+});
 
 /*io.on('connection', function (socket) {
     console.log('User Connected.');
@@ -49,6 +49,7 @@ io.on('connection', function (socket) {
 });*/
 
 // start server
+var server = http.createServer(app);
 server.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + server.address().port);
 });
