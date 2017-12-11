@@ -57,4 +57,4 @@
             angular.bootstrap(document, ['app']);
         });
     });
-});
+})();
