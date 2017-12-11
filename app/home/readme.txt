@@ -1,0 +1,1 @@
+controllers and views for "home" section of app
