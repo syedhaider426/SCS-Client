@@ -1,17 +1,7 @@
-//The express user service encapsulates all data access and business logic for users behind a simple interface. It exposes methods for CRUD operations and user authentication.
-
-//All of the service methods use promises in order to keep the users api controller simple and consistent, so all service methods can be called with the pattern [service method].then(...).catch(...);
-
-//Mongoskin is the MongoDB driver used to access to the database, it provides a thin layer over the native mongodb driver that makes it a bit simpler to perform CRUD operations.
-
 var config = require('config.json');
-
-//Useful for Iterating arrays, objects, & strings, Manipulating & testing values, and Creating composite functions
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
-
 var bcrypt = require('bcryptjs');
-//Essentialy a 'step-by-step' process
 var Q = require('q');
 var mongo = require('mongoskin');
 var db = mongo.db(config.connectionString, { native_parser: true });
@@ -19,8 +9,6 @@ db.bind('users');
  
 var service = {};
  
-//Dictionary of methods (login, retrieve info, create/update/delete user)
-
 service.authenticate = authenticate;
 service.getById = getById;
 service.create = create;
@@ -28,12 +16,10 @@ service.update = update;
 service.delete = _delete;
  
 module.exports = service;
-
+ 
 function authenticate(username, password) {
-    //Returns a task which will be finished in the future
     var deferred = Q.defer();
  
-    //Finds one specific user in the database of users
     db.users.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err);
  
@@ -49,7 +35,6 @@ function authenticate(username, password) {
     return deferred.promise;
 }
  
-//Gets the user based off their id
 function getById(_id) {
     var deferred = Q.defer();
  
@@ -68,7 +53,6 @@ function getById(_id) {
     return deferred.promise;
 }
  
-//Creates the user 
 function create(userParam) {
     var deferred = Q.defer();
  
@@ -105,7 +89,6 @@ function create(userParam) {
     return deferred.promise;
 }
  
-//Updates username, firstname,lastname
 function update(_id, userParam) {
     var deferred = Q.defer();
  
