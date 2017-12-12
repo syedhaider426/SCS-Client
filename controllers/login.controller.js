@@ -1,6 +1,7 @@
-//The express login controller defines routes for displaying the login view and authenticating user credentials. It uses the api to authenticate rather than using the user service directly, this is to keep the api and database layers cleanly separated from the rest of the application so they could easily be split if necessary and run on separate servers.
+//The express login controller defines routes for displaying the login view and authenticating user credentials. It uses the api to authenticate rather than using the user service directly, this is to keep the api and database layers cleanly separated 
+//from the rest of the application so they could easily be split if necessary and run on separate servers.
 
-//On successful authentication the jwt token returned from the api is stored in the user session so it can be made available to the angular application when it loads (via the '/token' route defined in the express app controller above).
+//On successful authentication the jwt token returned from the api is stored in the user session so it can be made available to the angular application when it loads via the '/token' route defined in the express app controller.
 
 var express = require('express');
 var router = express.Router();
