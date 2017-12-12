@@ -1,6 +1,5 @@
 //App.js is entry point for angular application
 //Uses config to define application routes using Angular UI
-
 (function () {
     'use strict';
 
