@@ -5,12 +5,13 @@ var express = require('express'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     expressJwt = require('express-jwt'),
-    //  socketJwt = require('socketio-jwt'),
+//  socketJwt = require('socketio-jwt'),
     config = require('config.json'),
     http = require('http'),
     //mongoose = require('mongoose'),
+    io = require('socket.io')(http);
+var controller = require('./home/index.js');
 
-socketEvents = require('./socketEvents');
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,7 +34,6 @@ app.get('/', function (req, res) {
 
 
 var server = http.createServer(app);
-var io = require('socket.io').listen(server);
 server.listen(3000, function () {
     console.log('Server listening at http://' + server.address().address + server.address().port);
 });
